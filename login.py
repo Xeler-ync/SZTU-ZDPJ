@@ -7,8 +7,19 @@ import json
 
 
 def login(driver):
-    with open('./xh_pass.json',mode='r',encoding='utf-8') as f: # load xuehao and password
-        jsonContent = json.load(f)
+    try:
+        with open('./xh_pass.json',mode='r',encoding='utf-8') as f: # load xuehao and password
+            jsonContent = json.load(f)
+    except:
+        with open('./xh_pass.json',mode='w+',encoding='utf-8') as f: # if not exsist, create one
+            f.write('{\n')
+            f.write('\t"xuehao": "",\n')
+            f.write('\t"password": ""\n')
+            f.write('}\n')
+        from os import getcwd
+        path = getcwd().replace('\\','/')
+        print(f'Please write down your xuehao and password in {path}/xh_pass.json')
+        exit()
     driver.get('https://jwxt.sztu.edu.cn/')
     driver.find_element(By.XPATH,'//*[@id="j_username"]').send_keys(jsonContent['xuehao'])
     driver.find_element(By.XPATH,'//*[@id="j_password"]').send_keys(jsonContent['password'])
