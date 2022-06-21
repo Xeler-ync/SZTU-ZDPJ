@@ -2,6 +2,7 @@
 # *coding=utf-8* #
 
 from seleniums import *
+from time import sleep
 
 import json
 
@@ -10,7 +11,7 @@ def login(driver):
     try:
         with open('./xh_pass.json',mode='r',encoding='utf-8') as f: # load xuehao and password
             jsonContent = json.load(f)
-    except:
+    except Exception:
         with open('./xh_pass.json',mode='w+',encoding='utf-8') as f: # if not exsist, create one
             f.write('{\n')
             f.write('\t"xuehao": "",\n')
@@ -22,6 +23,7 @@ def login(driver):
         exit()
     driver.get('https://jwxt.sztu.edu.cn/')
     driver.find_element(By.XPATH,'//*[@id="j_username"]').send_keys(jsonContent['xuehao'])
+    sleep(1)
     driver.find_element(By.XPATH,'//*[@id="j_password"]').send_keys(jsonContent['password'])
     driver.find_element(By.XPATH,'//*[@id="loginButton"]').click()
 
