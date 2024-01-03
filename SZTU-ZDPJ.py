@@ -14,20 +14,21 @@ def evaluate_techer() -> None:
     driver.switch_to.default_content()
     driver.switch_to.frame(driver.find_element(By.XPATH,'//*[@id="Frame1"]'))
     try:
-        i = 3
+        i = 2
         j = 2
         while 1:
             driver.find_element(By.XPATH,f'//*[@id="table1"]/tbody/tr[{i}]/td[2]/label[{j}]/i').click()
             j = randint(1,2)
-            i += 2
+            i += 1
     except Exception:
         driver.find_element(By.XPATH,'//*[@id="jynr"]').send_keys('My evaluation')
         try:
             driver.find_element(By.XPATH,'//*[@id="bc"]').click()
             fuck_off_alert()
-            # fuck_off_alert()
+            fuck_off_alert()
         except Exception:
             driver.find_element(By.XPATH,'//*[@id="qx"]').click()
+            fuck_off_alert()
 
 def evaluate_techer_switcher() -> None:
     try:
