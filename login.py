@@ -26,6 +26,11 @@ def login(driver):
     sleep(1)
     driver.find_element(By.XPATH,'//*[@id="j_password"]').send_keys(jsonContent['password'])
     driver.find_element(By.XPATH,'//*[@id="loginButton"]').click()
+    sleep(3)
+    driver.find_element(By.XPATH,'//*[@id="smsBtn"]').click()
+    sleep(1)
+    driver.find_element(By.XPATH,'/html/body/div[14]/div[3]/div[2]/div/div/form/div/div/input').send_keys(input())
+    driver.find_element(By.XPATH,'//*[@id="authen4Form"]/button').click()
 
 if __name__ == '__main__':
     global driver
