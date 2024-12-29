@@ -19,13 +19,11 @@ def evaluate_techer() -> None:
         while 1:
             driver.find_element(By.XPATH,f'//*[@id="table1"]/tbody/tr[{i}]/td[2]/label[{j}]/i').click()
             j = randint(1,2)
-            i += 2
     except Exception:
         driver.find_element(By.XPATH,'//*[@id="jynr"]').send_keys('My evaluation')
         try:
             driver.find_element(By.XPATH,'//*[@id="bc"]').click()
             fuck_off_alert()
-            # fuck_off_alert()
         except Exception:
             driver.find_element(By.XPATH,'//*[@id="qx"]').click()
 
@@ -64,12 +62,10 @@ def fuck_off_alert() -> None:
         alert.accept()
 
 def select_page() -> None:
-    driver.switch_to.frame(driver.find_element(By.XPATH,'//*[@id="Frame1"]'))
-    driver.find_element(By.XPATH,'//*[@id="Form1"]/table/tbody/tr[4]/td[8]/a').click()
+    driver.switch_to.frame(driver.find_element(By.XPATH,'//*[@id="Frame0"]'))
+    driver.find_element(By.XPATH,'//*[@id="Form1"]/table/tbody/tr[3]/td[8]/a').click()
     hit_like()
     driver.find_element(By.XPATH,'//*[@id="Form1"]/table/tbody/tr[2]/td[8]/a').click()
-    evaluate_techer_switcher()
-    driver.find_element(By.XPATH,'//*[@id="Form1"]/table/tbody/tr[3]/td[8]/a').click()
     evaluate_techer_switcher()
     driver.switch_to.default_content()
 
@@ -82,12 +78,15 @@ def main() -> None:
     # options.add_argument('--headless')
     # options.add_argument('--disable-gpu')
     driver = webdriver.Chrome(options=options)
+    driver.set_page_load_timeout(20)
     login(driver)
     sleep(3)
-    driver.find_element(By.XPATH,'//*[@id="accordion"]/li[11]/div/i').click()
-    driver.find_element(By.XPATH,'//*[@id="accordion"]/li[11]/ul/li/div/i').click()
+    a=driver.find_element(By.XPATH,'//*[@id="accordion"]/li[11]/div')
+    a.click()
+    # driver.find_element(By.XPATH,'//*[@id="accordion"]/li[11]/div').click()
+    driver.find_element(By.XPATH,'//*[@id="accordion"]/li[11]/ul/li/div').click()
     sleep(1)
-    driver.find_element(By.XPATH,'//*[@id="accordion"]/li[11]/ul/li/ul/li').click()
+    driver.find_element(By.XPATH,'//*[@id="NEW_XSD_JXPJ_JXPJ_XSPJ"]').click()
     select_page()
     print('Done!')
 

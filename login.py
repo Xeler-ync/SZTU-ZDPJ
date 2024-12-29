@@ -21,16 +21,13 @@ def login(driver):
         path = getcwd().replace('\\','/')
         print(f'Please write down your xuehao and password in {path}/xh_pass.json')
         exit()
-    driver.get('https://jwxt.sztu.edu.cn/')
-    driver.find_element(By.XPATH,'//*[@id="j_username"]').send_keys(jsonContent['xuehao'])
+    driver.get('https://jwxt-sztu-edu-cn-s.webvpn.sztu.edu.cn:8118/')
+    driver.find_element(By.XPATH,'//*[@id="fs41_username"]').send_keys(jsonContent['xuehao'])
     sleep(1)
-    driver.find_element(By.XPATH,'//*[@id="j_password"]').send_keys(jsonContent['password'])
-    driver.find_element(By.XPATH,'//*[@id="loginButton"]').click()
+    driver.find_element(By.XPATH,'//*[@id="smsBtn1"]').click()
     sleep(3)
-    driver.find_element(By.XPATH,'//*[@id="smsBtn"]').click()
-    sleep(1)
-    driver.find_element(By.XPATH,'/html/body/div[14]/div[3]/div[2]/div/div/form/div/div/input').send_keys(input())
-    driver.find_element(By.XPATH,'//*[@id="authen4Form"]/button').click()
+    driver.find_element(By.XPATH,'//*[@id="sms1_otpOrSms"]').send_keys(input())
+    driver.find_element(By.XPATH,'//*[@id="smsLoginBtn"]').click()
 
 if __name__ == '__main__':
     global driver
